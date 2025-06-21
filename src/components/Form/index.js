@@ -4,7 +4,7 @@ import Dropdown from '../Dropdown';
 import Button from '../Button';
 import { useState } from 'react';
 
-const Form = () => {
+const Form = (props) => {
     const teams = [
         'Front-end',
         'Back-end',
@@ -14,7 +14,9 @@ const Form = () => {
     ]
     const onSave = (event) => {
         event.preventDefault();
-        console.log(name, jobPosition, imageUrl, team)
+        props.onMemberRegister({
+            name, jobPosition, imageUrl, team
+        })
     }
        
     const [name, setName] = useState('');
