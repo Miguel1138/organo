@@ -2,11 +2,7 @@ import './Form.css'
 import TextField from '../TextField'
 import Dropdown from '../Dropdown';
 import Button from '../Button';
-
-const onSave = (event) => {
-    event.preventDefault();
-    console.log("teste");
-}
+import { useState } from 'react';
 
 const Form = () => {
     const teams = [
@@ -16,15 +12,34 @@ const Form = () => {
         'Produto',
         'Banco'
     ]
+    const onSave = (event) => {
+        event.preventDefault();
+        console.log(name, jobPosition, imageUrl, team)
+    }
+       
+    const [name, setName] = useState('');
+    const [jobPosition, setJobPosition] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+    const [team, setTeam] = useState('');
 
     return (
         <section className='form'> 
             <form onSubmit={onSave}>
                 <h2> Preencha os dados para inserir novo colaborador</h2>
-                <TextField isRequired={true} label="Nome" placeholder="Digite seu nome"/>
-                <TextField isRequired={true} label="Cargo" placeholder="Digite seu cargo"/>
-                <TextField label="Imagem" placeholder="Digite o endereço da imagem"/>
-                <Dropdown label="Times" items={teams} />
+                <TextField 
+                    value={name} onChange={(value) => setName(value)} 
+                    isRequired={true} label="Nome" placeholder="Digite seu nome"
+                />
+                <TextField 
+                    value={jobPosition} onChange={value => setJobPosition(value)}
+                    isRequired={true} label="Cargo" placeholder="Digite seu cargo"
+                />
+                <TextField 
+                    value={imageUrl} onChange={value => setImageUrl(value)}
+                    label="Imagem" placeholder="Digite o endereço da imagem"/>
+                <Dropdown 
+                    value={team} onChange={value => setTeam(value)}
+                    isRequired={true} label="Times" items={teams} />
                 <Button> Criar Card </Button>
             </form>
         </section>
