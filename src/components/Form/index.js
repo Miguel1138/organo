@@ -5,13 +5,6 @@ import Button from '../Button';
 import { useState } from 'react';
 
 const Form = (props) => {
-    const teams = [
-        'Front-end',
-        'Back-end',
-        'Design',
-        'Produto',
-        'Banco'
-    ]
     const onSave = (event) => {
         event.preventDefault();
         props.onMemberRegister({
@@ -41,7 +34,7 @@ const Form = (props) => {
                     label="Imagem" placeholder="Digite o endereço da imagem"/>
                 <Dropdown 
                     value={team} onChange={value => setTeam(value)}
-                    isRequired={true} label="Times" items={teams} />
+                    isRequired={true} label="Times" items={props.teamsName} />
                 <Button> Criar Card </Button>
             </form>
         </section>
