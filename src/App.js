@@ -39,7 +39,11 @@ function App() {
     <div className="App">
       <Banner />
       <Form teamsName={teams.map(team => team.name)} onMemberRegister={member => addNewMember(member)}/>
-      {teams.map(team => <Team key={team.name} name={team.name} primaryColor={team.primaryColor} secondaryColor={team.secondaryColor} />)}
+      {teams.map(team => <Team 
+        key={team.name} name={team.name} 
+        primaryColor={team.primaryColor} secondaryColor={team.secondaryColor}
+        members={members.filter(member => member.team === team.name)} 
+      />)}
     </div>
   );
 }
