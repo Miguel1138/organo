@@ -10,6 +10,11 @@ const Form = (props) => {
         props.onMemberRegister({
             name, jobPosition, imageUrl, team
         })
+
+        setName('');
+        setJobPosition('');
+        setImageUrl('');
+        setTeam('');
     }
        
     const [name, setName] = useState('');
