@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Banner from './components/Banner';
 import Form from './components/Form';
 import Team from './components/Team';
+import Footer from './components/Footer';
 
 const teams = [
   {
@@ -44,6 +45,7 @@ function App() {
         primaryColor={team.primaryColor} secondaryColor={team.secondaryColor}
         members={members.filter(member => member.team === team.name)} 
       />)}
+      <Footer />
     </div>
   );
 }
