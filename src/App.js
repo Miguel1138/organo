@@ -35,7 +35,7 @@ const teams = [
 function App() {
   const [members, setMembers] = useState([]);
   const addNewMember = (member) => setMembers([...members, member]);
-
+  
   return (
     <div className="App">
       <Banner />

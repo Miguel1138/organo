@@ -9,8 +9,9 @@ const Team = (props) => {
             <div className='members'>
              {props.members.map(member => 
                 <Member 
+                    key={member.name}
                     name={member.name} jobPosition={member.jobPosition} 
-                    imageUrl={member.imageUrl} 
+                    imageUrl={member.imageUrl} bgColor={props.primaryColor}
                 />)}
             </div>
         </section>

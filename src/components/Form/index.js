@@ -20,7 +20,7 @@ const Form = (props) => {
     const [name, setName] = useState('');
     const [jobPosition, setJobPosition] = useState('');
     const [imageUrl, setImageUrl] = useState('');
-    const [team, setTeam] = useState('');
+    const [team, setTeam] = useState(props.teamsName[0]);
 
     return (
         <section className='form'> 
