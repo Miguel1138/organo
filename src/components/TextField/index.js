@@ -1,15 +1,17 @@
 import './TextField.css';
 
-const TextField = (props) => {
-    const typing = (event) => props.onChange(event.target.value);
-    const defaultPlaceholder = `${props.placeholder}...`;
-
+const TextField = ({
+    placeholder, label, 
+    value, isRequired, onChange
+}) => {
+    const typing = (event) => onChange(event.target.value);
+    const defaultPlaceholder = `${placeholder}...`;
     return (
         <div className='text-field'>
-            <label> {props.label} </label>
+            <label> {label} </label>
             <input 
-                value={props.value} onChange={typing}
-                required={props.isRequired} placeholder={defaultPlaceholder} />
+                value={value} onChange={typing}
+                required={isRequired} placeholder={defaultPlaceholder} />
         </div>
     );
 };

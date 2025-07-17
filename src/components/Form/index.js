@@ -4,10 +4,10 @@ import Dropdown from '../Dropdown';
 import Button from '../Button';
 import { useState } from 'react';
 
-const Form = (props) => {
+const Form = ({ teamsName, onMemberRegister }) => {
     const onSave = (event) => {
         event.preventDefault();
-        props.onMemberRegister({
+        onMemberRegister({
             name, jobPosition, imageUrl, team
         })
 
@@ -20,7 +20,7 @@ const Form = (props) => {
     const [name, setName] = useState('');
     const [jobPosition, setJobPosition] = useState('');
     const [imageUrl, setImageUrl] = useState('');
-    const [team, setTeam] = useState(props.teamsName[0]);
+    const [team, setTeam] = useState(teamsName[0]);
 
     return (
         <section className='form'> 
@@ -39,7 +39,7 @@ const Form = (props) => {
                     label="Imagem" placeholder="Digite o endereço da imagem"/>
                 <Dropdown 
                     value={team} onChange={value => setTeam(value)}
-                    isRequired={true} label="Times" items={props.teamsName} />
+                    isRequired={true} label="Times" items={teamsName} />
                 <Button> Criar Card </Button>
             </form>
         </section>

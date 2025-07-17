@@ -32,6 +32,10 @@ const teams = [
   },
 ]
 
+function deleteMember() {
+  console.log("banana"); 
+}
+
 function App() {
   const [members, setMembers] = useState([]);
   const addNewMember = (member) => setMembers([...members, member]);
@@ -41,9 +45,9 @@ function App() {
       <Banner />
       <Form teamsName={teams.map(team => team.name)} onMemberRegister={member => addNewMember(member)}/>
       {teams.map(team => <Team 
-        key={team.name} name={team.name} 
-        primaryColor={team.primaryColor} secondaryColor={team.secondaryColor}
+        key={team.name} team={team} 
         members={members.filter(member => member.team === team.name)} 
+        onDelete={deleteMember} 
       />)}
       <Footer />
     </div>

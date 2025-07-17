@@ -1,14 +1,15 @@
 import './Member.css';
 
-const Member = ({name, jobPosition, imageUrl, bgColor}) =>  {
+const Member = ({ member, bgColor, onDelete }) =>  {
     return (
         <div className='member'> 
+            <div className='delete' onClick={onDelete}> delete </div>
             <div className='header' style={{backgroundColor: bgColor}}> 
-                <img src={imageUrl} alt={name} />
+                <img src={member.imageUrl} alt={member.name} />
             </div>
             <div className='footer'>
-                <h4>{name}</h4>
-                <h5>{jobPosition}</h5>
+                <h4>{member.name}</h4>
+                <h5>{member.jobPosition}</h5>
             </div>
         </div>
     );
