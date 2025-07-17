@@ -1,9 +1,10 @@
+import { AiFillCloseCircle } from 'react-icons/ai';
 import './Member.css';
 
 const Member = ({ member, bgColor, onDelete }) =>  {
     return (
         <div className='member'> 
-            <div className='delete' onClick={onDelete}> delete </div>
+            <AiFillCloseCircle className='delete' size={25} onClick={onDelete}/> 
             <div className='header' style={{backgroundColor: bgColor}}> 
                 <img src={member.imageUrl} alt={member.name} />
             </div>
@@ -15,4 +16,4 @@ const Member = ({ member, bgColor, onDelete }) =>  {
     );
 }
 
-export default Member;
+export default Member;  
