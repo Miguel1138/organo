@@ -3,40 +3,46 @@ import Banner from './components/Banner';
 import Form from './components/Form';
 import Team from './components/Team';
 import Footer from './components/Footer';
-
-const teams = [
-  {
-      name: 'Front-End',
-      primaryColor: '#82CFFA',
-      secondaryColor: '#E8F8FF',
-  },
-  {
-      name: 'Back-End',
-      primaryColor: '#A6D157',
-      secondaryColor: '#F0F8E2',
-  },
-  {
-      name: 'Banco de Dados',
-      primaryColor: '#E06B69',
-      secondaryColor: '#FDE7E8',
-  },
-  {
-      name: 'Design',
-      primaryColor: '#D86EBF',
-      secondaryColor: '#FAE5F5',
-  },
-  {
-      name: 'Produto',
-      primaryColor: '#FEBA05',
-      secondaryColor: '#FFF5D9',
-  },
-]
+import { VscDebugPause } from 'react-icons/vsc';
 
 function deleteMember() {
   console.log("banana"); 
 }
 
 function App() {
+  const [teams, setTeams] = useState([
+    {
+        name: 'Front-End',
+        color: '#82CFFA',
+    },
+    {
+        name: 'Back-End',
+        color: '#A6D157',
+    },
+    {
+        name: 'Banco de Dados',
+        color: '#E06B69',
+    },
+    {
+        name: 'Design',
+        color: '#D86EBF',
+    },
+    {
+        name: 'Produto',
+        color: '#FEBA05',
+    },
+  ]);
+
+  function onChangeTeamColor(color, name) {
+    setTeams(teams.map(team => {
+      if(team.name === name) {
+        debugger
+        team.color = color;
+      } 
+      return team;
+    }))
+  }
+
   const [members, setMembers] = useState([]);
   const addNewMember = (member) => setMembers([...members, member]);
   
@@ -47,7 +53,7 @@ function App() {
       {teams.map(team => <Team 
         key={team.name} team={team} 
         members={members.filter(member => member.team === team.name)} 
-        onDelete={deleteMember} 
+        onDelete={deleteMember} onChangeColor={onChangeTeamColor}
       />)}
       <Footer />
     </div>
