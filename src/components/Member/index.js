@@ -4,7 +4,7 @@ import './Member.css';
 const Member = ({ member, bgColor, onDelete }) =>  {
     return (
         <div className='member'> 
-            <AiFillCloseCircle className='delete' size={25} onClick={onDelete}/> 
+            <AiFillCloseCircle className='delete' size={25} onClick={() => onDelete(member.id)}/> 
             <div className='header' style={{backgroundColor: bgColor}}> 
                 <img src={member.imageUrl} alt={member.name} />
             </div>

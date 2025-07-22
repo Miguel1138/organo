@@ -3,12 +3,14 @@ import TextField from '../TextField'
 import Dropdown from '../Dropdown';
 import Button from '../Button';
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 
 const Form = ({ teamsName, onMemberRegister }) => {
     const onSave = (event) => {
         event.preventDefault();
         onMemberRegister({
-            name, jobPosition, imageUrl, team
+            id: uuidv4(), name, jobPosition, imageUrl, team
         })
 
         setName('');

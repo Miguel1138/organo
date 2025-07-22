@@ -11,7 +11,7 @@ const Team = ({
                 <section className='team'
                     style={{backgroundColor: hexToRgba(team.color, '0.6')}}> 
                     <input type='color' className='team-color' 
-                        value={team.color} onChange={event => onChangeColor(event.target.value, team.name)} 
+                        value={team.color} onChange={event => onChangeColor(event.target.value, team.id)} 
                         />
                     <h3 style={{borderColor: team.color}}>{team.name}</h3>
                     <div className='members'>
