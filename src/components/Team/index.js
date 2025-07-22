@@ -17,6 +17,7 @@ const Team = ({
                     <div className='members'>
                     {members.map((member, key) => 
                         <Member 
+                        
                             key={key} 
                             member={member} bgColor={team.color}
                             onDelete={onDelete}
