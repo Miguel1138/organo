@@ -44,16 +44,23 @@ function App() {
   }
 
   const [members, setMembers] = useState([]);
-  const addNewMember = (member) => setMembers([...members, member]);
-  function deleteMember(id) {
-     setMembers(members.filter(member => member.id !== id)); 
-  }
+  const addNewMember = (member) => { setMembers([...members, member]); };
+  const deleteMember = (id) => { 
+    setMembers(members.filter(member => member.id !== id)); 
+  };
 
+  const addNewTeam = (newTeam) => {
+     setTeams([...teams, { ...newTeam, id: uuidv4() }]);
+  };
 
   return (
     <div className="App">
       <Banner />
-      <Form teamsName={teams.map(team => team.name)} onMemberRegister={member => addNewMember(member)}/>
+      <Form 
+        teamsName={teams.map(team => team.name)} 
+        onMemberRegister={member => addNewMember(member)} 
+        onTeamRegister={team => addNewTeam(team)}
+      />
       {teams.map(team => <Team 
         key={team.id} team={team} 
         members={members.filter(member => member.team === team.name)} 

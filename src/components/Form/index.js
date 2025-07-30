@@ -4,9 +4,10 @@ import Dropdown from '../Dropdown';
 import Button from '../Button';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import TeamForm from '../TeamForm';
 
 
-const Form = ({ teamsName, onMemberRegister }) => {
+const Form = ({ teamsName, onMemberRegister, onTeamRegister }) => {
     const onSave = (event) => {
         event.preventDefault();
         onMemberRegister({
@@ -17,7 +18,7 @@ const Form = ({ teamsName, onMemberRegister }) => {
         setJobPosition('');
         setImageUrl('');
         setTeam('');
-    }
+    }    
        
     const [name, setName] = useState('');
     const [jobPosition, setJobPosition] = useState('');
@@ -41,10 +42,13 @@ const Form = ({ teamsName, onMemberRegister }) => {
                     label="Imagem" placeholder="Digite o endereço da imagem"/>
                 <Dropdown 
                     value={team} onChange={value => setTeam(value)}
-                    isRequired={true} label="Times" items={teamsName} />
+                    isRequired={true} label="Cor" items={teamsName} />
                 <Button> Criar Card </Button>
             </form>
+           <TeamForm onTeamRegister={onTeamRegister}/>
         </section>
+
+        
     );
 };
 
