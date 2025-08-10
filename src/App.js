@@ -3,51 +3,83 @@ import Banner from './components/Banner';
 import Form from './components/Form';
 import Team from './components/Team';
 import Footer from './components/Footer';
-
-const teams = [
-  {
-      name: 'Front-End',
-      primaryColor: '#82CFFA',
-      secondaryColor: '#E8F8FF',
-  },
-  {
-      name: 'Back-End',
-      primaryColor: '#A6D157',
-      secondaryColor: '#F0F8E2',
-  },
-  {
-      name: 'Banco de Dados',
-      primaryColor: '#E06B69',
-      secondaryColor: '#FDE7E8',
-  },
-  {
-      name: 'Design',
-      primaryColor: '#D86EBF',
-      secondaryColor: '#FAE5F5',
-  },
-  {
-      name: 'Produto',
-      primaryColor: '#FEBA05',
-      secondaryColor: '#FFF5D9',
-  },
-]
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
-  const [members, setMembers] = useState([]);
-  const addNewMember = (member) => setMembers([...members, member]);
-  
+  const [teams, setTeams] = useState([
+    {
+        id: uuidv4(),
+        name: 'Front-End',
+        color: '#82CFFA',
+    },
+    {
+        id: uuidv4(),
+        name: 'Back-End',
+        color: '#A6D157',
+    },
+    {
+        id: uuidv4(),
+        name: 'Banco de Dados',
+        color: '#E06B69',
+    },
+    {
+        id: uuidv4(),
+        name: 'Design',
+        color: '#D86EBF',
+    },
+    {
+        id: uuidv4(),
+        name: 'Produto',
+        color: '#FEBA05',
+    },
+  ]);
+
+  const onChangeTeamColor = (color, id) => {
+    setTeams(teams.map(team => {
+      if(team.id === id) {        
+        team.color = color;
+      } 
+      return team;
+    }))
+  }
+
+  const [members, setMembers] = useState([
+
+  ]);
+  const addNewMember = (member) => { setMembers([...members, member]); };
+  const deleteMember = (id) => { 
+    setMembers(members.filter(member => member.id !== id)); 
+  };
+  const onFavoriteMember = (id) => {
+    setMembers([...members, members.map(member => {
+      if(member.id === id) member.favorite = !member.favorite;
+      console.log('banana', member.favorite);
+               
+      return member;
+    })]);;
+  }
+
+  const addNewTeam = (newTeam) => {
+     setTeams([...teams, { ...newTeam, id: uuidv4() }]);
+  };
+
   return (
     <div className="App">
       <Banner />
-      <Form teamsName={teams.map(team => team.name)} onMemberRegister={member => addNewMember(member)}/>
+      <Form 
+        teamsName={teams.map(team => team.name)} 
+        onMemberRegister={member => addNewMember(member)} 
+        onTeamRegister={team => addNewTeam(team)}
+      />
       {teams.map(team => <Team 
-        key={team.name} name={team.name} 
-        primaryColor={team.primaryColor} secondaryColor={team.secondaryColor}
+        key={team.id} team={team} 
         members={members.filter(member => member.team === team.name)} 
+        onFavoriteMember={onFavoriteMember}
+        onDelete={deleteMember} onChangeColor={onChangeTeamColor} 
       />)}
       <Footer />
     </div>
-  );
+  );  
 }
 
 export default App;
