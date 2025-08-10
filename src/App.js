@@ -34,7 +34,7 @@ function App() {
     },
   ]);
 
-  function onChangeTeamColor(color, id) {
+  const onChangeTeamColor = (color, id) => {
     setTeams(teams.map(team => {
       if(team.id === id) {        
         team.color = color;
@@ -43,11 +43,21 @@ function App() {
     }))
   }
 
-  const [members, setMembers] = useState([]);
+  const [members, setMembers] = useState([
+
+  ]);
   const addNewMember = (member) => { setMembers([...members, member]); };
   const deleteMember = (id) => { 
     setMembers(members.filter(member => member.id !== id)); 
   };
+  const onFavoriteMember = (id) => {
+    setMembers([...members, members.map(member => {
+      if(member.id === id) member.favorite = !member.favorite;
+      console.log('banana', member.favorite);
+               
+      return member;
+    })]);;
+  }
 
   const addNewTeam = (newTeam) => {
      setTeams([...teams, { ...newTeam, id: uuidv4() }]);
@@ -64,11 +74,12 @@ function App() {
       {teams.map(team => <Team 
         key={team.id} team={team} 
         members={members.filter(member => member.team === team.name)} 
-        onDelete={deleteMember} onChangeColor={onChangeTeamColor}
+        onFavoriteMember={onFavoriteMember}
+        onDelete={deleteMember} onChangeColor={onChangeTeamColor} 
       />)}
       <Footer />
     </div>
-  );
+  );  
 }
 
 export default App;

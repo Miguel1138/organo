@@ -1,15 +1,15 @@
-import './TeamForm.css'
+import './TeamForm.css';
 import { useState } from "react";
-import Button from "../Button"
-import Field from "../TextField"
+import Button from "../Button";
+import Field from "../Field";
 
-const TeamForm = ({onTeamRegister}) => {
+const TeamForm = ({onTeamRegister }) => {
     const [teamName, setTeamName] = useState('');
     const [teamColor, setTeamColor] = useState('');
 
     const onSave = (event) => {
          event.preventDefault();
-         onTeamRegister({name: teamName, color: teamColor})
+         onTeamRegister({name: teamName, color: teamColor});
 
          setTeamColor('');
          setTeamName('');

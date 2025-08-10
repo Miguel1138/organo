@@ -4,7 +4,7 @@ import hexToRgba from 'hex-to-rgba';
 
 const Team = ({ 
     team, members,
-    onDelete, onChangeColor
+    onDelete, onChangeColor, onFavoriteMember
 }) => {
     return ( 
         members.length > 0 && (
@@ -17,10 +17,9 @@ const Team = ({
                     <div className='members'>
                     {members.map((member, key) => 
                         <Member 
-                        
                             key={key} 
                             member={member} bgColor={team.color}
-                            onDelete={onDelete}
+                            onDelete={onDelete} onFavoriteMember={onFavoriteMember}
                         />)}
                     </div>
                </section>
